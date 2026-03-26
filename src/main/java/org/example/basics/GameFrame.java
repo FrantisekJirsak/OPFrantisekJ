@@ -68,6 +68,8 @@ public class GameFrame extends JPanel {
     private void paintGame(Graphics g){
         background.drawBackground(g);
         player.drawPlayer(g);
+        enemy.spawnEnemies();
+
 
 
 

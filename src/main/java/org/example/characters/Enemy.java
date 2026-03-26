@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Enemy extends Entita {
 
-    private int moveSpeed = 2;
+    private int moveSpeed = 3;
     GameFrame gameFrame;
     Player player;
     ArrayList<Entita> enemies = new ArrayList<>();
@@ -46,25 +46,24 @@ public class Enemy extends Entita {
 
         }
 
-
-
-
     }
 
-    public void drawEnemy(Graphics g){
-        for (int i = 0; i <= 49; i++){
-            Enemy enemy = new Enemy(x, y);
-            Random random = new Random();
-            x = random.nextInt(1500, 2000);
-            y = random.nextInt(-150, -300);
-            enemies.add(enemy);
+    public void spawnEnemies(){
+        Random random = new Random();
 
+        for (int i = 0; i < 49; i++){
+            int x = random.nextInt(1500, 2000);
+            int y = random.nextInt(-300, -150);
 
+            enemies.add(new Enemy(x, y));
         }
+    }
+
+
 
     }
 
-}
+
 
 
 
