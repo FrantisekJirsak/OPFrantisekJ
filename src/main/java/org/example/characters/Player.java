@@ -57,27 +57,13 @@ public class Player extends Entita{
         }
 
     public void onBorders(){
-        if (x <= 0){
-            x = x + playerSpeed;
-        }
 
-        if (x >= 1300){
-            x = x - playerSpeed;
-        }
-
-        if (y <= 0){
-            y = y + playerSpeed;
-
-        }
-
-        if (y <= 900){
-            y = y - playerSpeed;
     }
 
 
     }
 
-}
+
 
 
 

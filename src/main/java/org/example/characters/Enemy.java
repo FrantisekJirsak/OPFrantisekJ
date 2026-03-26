@@ -1,11 +1,9 @@
 package org.example.characters;
 
 import org.example.basics.GameFrame;
-import org.example.inputs.KeyInput;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;

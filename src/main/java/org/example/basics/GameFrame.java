@@ -32,7 +32,7 @@ public class GameFrame extends JPanel {
 
             player.movePlayer();
             player.onBorders();
-            enemy.moveEnemy();
+
 
 
             if (keyInput.isKeyPressed(KeyEvent.VK_P)){
@@ -68,7 +68,6 @@ public class GameFrame extends JPanel {
     private void paintGame(Graphics g){
         background.drawBackground(g);
         player.drawPlayer(g);
-        enemy.drawEnemy(g);
 
 
 
