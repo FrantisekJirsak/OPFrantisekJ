@@ -4,6 +4,7 @@ import org.example.characters.Enemy;
 import org.example.characters.Player;
 import org.example.gamefield.Background;
 import org.example.inputs.KeyInput;
+import org.example.inputs.MouseInput;
 import org.example.menu.Button;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class GameFrame extends JPanel {
 
     private static final int timeDelay = 16;
     private final KeyInput keyInput = new KeyInput();
+    private final MouseInput mouseInput = new MouseInput();
     Player player = new Player(60,800, keyInput);
     Enemy enemy;
     ArrayList<Enemy> enemies = new ArrayList<>();
@@ -68,7 +70,6 @@ public class GameFrame extends JPanel {
     private void paintGame(Graphics g){
         background.drawBackground(g);
         player.drawPlayer(g);
-        enemy.spawnEnemies();
 
 
 
