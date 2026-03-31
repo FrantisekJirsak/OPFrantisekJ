@@ -58,7 +58,7 @@ public class Player extends Entita{
 
         }
 
-    public void onBorders(){
+    public void onBorders(Player player, Rectangle enemy){
 
     }
 
