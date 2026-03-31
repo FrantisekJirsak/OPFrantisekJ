@@ -19,7 +19,7 @@ public class GameFrame extends JPanel {
     private final MouseInput mouseInput = new MouseInput();
     private final KeyInput keyInput = new KeyInput();
     Player player = new Player(60,800, keyInput);
-    Enemy enemy = new Enemy(0,0);
+    Enemy enemyManager = new Enemy(0,0);
     ArrayList<Enemy> enemies = new ArrayList<>();
     Button button = new Button();
     Background background = new Background(this);
