@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import static java.awt.Color.lightGray;
+
 public class GameFrame extends JPanel {
 
 
@@ -41,7 +43,11 @@ public class GameFrame extends JPanel {
             }
 
             if (keyInput.isKeyPressed(KeyEvent.VK_P)){
-                switchMenu = !switchMenu;
+                switchMenu = false;
+            }
+
+            if (keyInput.isKeyPressed(KeyEvent.VK_O)){
+                switchMenu = true;
             }
 
             System.out.println(switchMenu);
@@ -73,6 +79,8 @@ public class GameFrame extends JPanel {
     private void paintGame(Graphics g){
         background.drawBackground(g);
         player.drawPlayer(g);
+        g.drawString("Press P for Main Menu", 20,20);
+        g.setColor(lightGray);
         for (Enemy e : enemies){
             e.spawnEnemies();
             e.drawEnemy(g);
