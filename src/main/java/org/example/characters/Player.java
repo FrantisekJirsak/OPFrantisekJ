@@ -16,6 +16,8 @@ public class Player extends Entita{
     private boolean hasWeapon = false;
     private boolean hasItem = false;
     private boolean isMoving = false;
+    public int money = 0;
+    private int score = 0;
 
     private final Image PLAYER_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_1.png"))).getImage();
     private final Image PLAYER_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_2.png"))).getImage();
