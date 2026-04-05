@@ -1,5 +1,7 @@
 package org.example.characters;
 
+import org.example.basics.Money;
+
 public class Entita {
 
     public int x,y;
@@ -10,7 +12,10 @@ public class Entita {
         this.y = y;
     }
 
-    public void getBounds(){
+    public void getBounds(Money money, Enemy enemy){
+        if (x >= enemy.x){
+            isHurt = true;
+        }
 
     }
 

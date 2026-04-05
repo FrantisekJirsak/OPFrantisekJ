@@ -23,6 +23,7 @@ public class GameFrame extends JPanel {
     Player player = new Player(60,800, keyInput);
     Rectangle enemyManager = new Rectangle(0,0);
     ArrayList<Enemy> enemies = new ArrayList<>();
+    ArrayList<Money> budget = new ArrayList<>();
     Button button = new Button();
     Background background = new Background(this);
     private boolean switchMenu = false;
@@ -82,8 +83,8 @@ public class GameFrame extends JPanel {
         g.drawString("Press P for Main Menu", 20,20);
         g.setColor(lightGray);
         for (Enemy e : enemies){
-            e.spawnEnemies();
             e.drawEnemy(g);
+            e.spawnEnemies();
         }
 
 
