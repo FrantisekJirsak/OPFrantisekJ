@@ -13,6 +13,8 @@ public class Player extends Entita{
     GameFrame gameFrame;
     private KeyInput keyInput;
     private int playerSpeed = 3;
+    private int startX = x;
+    private int startY = y;
     private boolean hasWeapon = false;
     private boolean hasItem = false;
     private boolean isMoving = false;
@@ -29,6 +31,8 @@ public class Player extends Entita{
     public Player(int x, int y, KeyInput keyInput) {
         super(x, y);
         this.keyInput = keyInput;
+        this.startX = startX;
+        this.startY = startY;
     }
 
 
@@ -58,8 +62,20 @@ public class Player extends Entita{
 
         }
 
-    public void onBorders(Player player, Rectangle enemy){
+    public void onBorders(Player player, Enemy enemy){
+        if (player.x == enemy.x){
+            player.isHurt = true;
+        }
 
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, 48, 48);
+    }
+
+    public void resetPosition(){
+        this.x = startX;
+        this.y = startY;
     }
 
 

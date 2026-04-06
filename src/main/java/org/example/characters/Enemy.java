@@ -19,7 +19,7 @@ public class Enemy extends Entita {
     private final Image ENEMY_3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_3.png"))).getImage();
     private final Image ENEMY_4 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_4.png"))).getImage();
 
-    private final Image currentImage = ENEMY_1;
+    private Image currentImage = ENEMY_1;
 
     public Enemy(int x, int y) {
         super(x, y);
@@ -36,15 +36,19 @@ public class Enemy extends Entita {
 
             if (player.x > x){
                 x += moveSpeed;
+                currentImage = ENEMY_1;
             }
             if (player.x < x){
                 x -= moveSpeed;
+                currentImage = ENEMY_2;
             }
             if (player.y > y){
                 y += moveSpeed;
+                currentImage = ENEMY_3;
             }
             if (player.y < y){
                 y -= moveSpeed;
+                currentImage = ENEMY_4;
             }
 
 
@@ -56,7 +60,7 @@ public class Enemy extends Entita {
             Random random = new Random();
             int x = random.nextInt(1000, 1200);
             int y = random.nextInt(100, 200);
-            enemies.add(new Enemy(x, y));
+            enemies.add(enemy);
         }
     }
 

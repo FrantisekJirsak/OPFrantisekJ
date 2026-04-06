@@ -1,6 +1,7 @@
 package org.example.basics;
 
 
+import org.example.characters.Player;
 import org.example.menu.MenuPanel;
 
 import javax.swing.*;
@@ -17,19 +18,12 @@ public class Game extends JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
-
-        if (gameFrame.isSwitchMenu()){
-            MenuPanel menuPanel = new MenuPanel(() -> {
-                System.out.println("Good Luck!");
-
-            });
-
-        }
     }
 
     public static void main(String[] args){
         SwingUtilities.invokeLater(Game::new);
     }
+
 
 
 }

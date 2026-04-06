@@ -22,9 +22,10 @@ public class GameFrame extends JPanel {
     private final MouseInput mouseInput = new MouseInput();
     private final KeyInput keyInput = new KeyInput();
     Player player = new Player(60,800, keyInput);
-    Enemy enemyManager = new Enemy(getX(), getY());
+    Enemy enemy = new Enemy(getX(), getY());
     ArrayList<Enemy> enemies = new ArrayList<>();
-    private int[] money;
+    ArrayList<Money> coins = new ArrayList<>();
+    int budget = 0;
     Button button = new Button();
     Background background = new Background(this);
     private boolean switchMenu = false;
@@ -34,15 +35,23 @@ public class GameFrame extends JPanel {
         addKeyListener(keyInput);
         addMouseListener(mouseInput);
         requestFocusInWindow();
-        enemyManager.spawnEnemies(enemyManager);
-
+        enemy.spawnEnemies(enemy);
 
         new Timer(timeDelay, e -> {
+            if (!player.isHurt){
+                repaint();
 
             player.movePlayer();
 
             for (Enemy enemy : enemies){
                 enemy.moveEnemy();
+            }
+
+            for (Money coin : coins) {
+                coin.animateMoney();
+                if (coin.checkCollected(player.getBounds())) {
+                        budget += 1;
+                }
             }
 
             if (keyInput.isKeyPressed(KeyEvent.VK_P)){
@@ -51,14 +60,14 @@ public class GameFrame extends JPanel {
 
             if (keyInput.isKeyPressed(KeyEvent.VK_O)){
                 switchMenu = true;
+                player.resetPosition();
+                Money.spawnMoney(coins);
             }
 
             System.out.println(switchMenu);
 
+            }
 
-
-
-            repaint();
         }).start();
     }
 
@@ -82,18 +91,21 @@ public class GameFrame extends JPanel {
     private void paintGame(Graphics g){
         background.drawBackground(g);
         player.drawPlayer(g);
+        for (Money coin : coins) {
+            coin.draw(g);
+        }
         g.drawString("Press P for Main Menu", 20,20);
-        g.drawString("Money:" + Arrays.toString(money), 1220, 20);
+        g.drawString("Good Luck", 630,20);
+        g.drawString("Money:" + budget, 1220, 20);
         g.setColor(lightGray);
-        enemyManager.drawEnemies(g);
+        enemy.drawEnemies(g);
 
+    }
 
+    private void endGame(){
+        if (player.isHurt){
 
-
-
-
-
-
+        }
     }
 
     public boolean isSwitchMenu() {

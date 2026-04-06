@@ -2,6 +2,8 @@ package org.example.characters;
 
 import org.example.basics.Money;
 
+import java.util.ArrayList;
+
 public class Entita {
 
     public int x,y;
@@ -12,7 +14,7 @@ public class Entita {
         this.y = y;
     }
 
-    public void getBounds(Money money, Enemy enemy){
+    public void getBounds(Player player, Enemy enemy){
         if (x >= enemy.x){
             isHurt = true;
         }
