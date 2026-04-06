@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static java.awt.Color.lightGray;
 
@@ -21,9 +22,9 @@ public class GameFrame extends JPanel {
     private final MouseInput mouseInput = new MouseInput();
     private final KeyInput keyInput = new KeyInput();
     Player player = new Player(60,800, keyInput);
-    Rectangle enemyManager = new Rectangle(0,0);
+    Enemy enemyManager = new Enemy(getX(), getY());
     ArrayList<Enemy> enemies = new ArrayList<>();
-    ArrayList<Money> budget = new ArrayList<>();
+    private int[] money;
     Button button = new Button();
     Background background = new Background(this);
     private boolean switchMenu = false;
@@ -33,11 +34,12 @@ public class GameFrame extends JPanel {
         addKeyListener(keyInput);
         addMouseListener(mouseInput);
         requestFocusInWindow();
+        enemyManager.spawnEnemies(enemyManager);
+
 
         new Timer(timeDelay, e -> {
 
             player.movePlayer();
-            player.onBorders(player, enemyManager);
 
             for (Enemy enemy : enemies){
                 enemy.moveEnemy();
@@ -81,11 +83,11 @@ public class GameFrame extends JPanel {
         background.drawBackground(g);
         player.drawPlayer(g);
         g.drawString("Press P for Main Menu", 20,20);
+        g.drawString("Money:" + Arrays.toString(money), 1220, 20);
         g.setColor(lightGray);
-        for (Enemy e : enemies){
-            e.drawEnemy(g);
-            e.spawnEnemies();
-        }
+        enemyManager.drawEnemies(g);
+
+
 
 
 
