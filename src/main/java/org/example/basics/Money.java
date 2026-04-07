@@ -14,7 +14,10 @@ public class Money {
     private final ImageIcon COIN1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/money/money_frame_1.png")));
     private final ImageIcon COIN2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/money/money_frame_2.png")));
     private final ImageIcon COIN3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/money/money_frame_3.png")));
+
     private ImageIcon currentImage = COIN1;
+    private int animationTick = 0;
+    private final int animationSpeed = 12;
 
     public Money(int x, int y) {
         this.x = x;
@@ -28,16 +31,18 @@ public class Money {
     }
 
     public void animateMoney() {
-        if (currentImage == COIN1) {
-            currentImage = COIN2;
-        }
+        animationTick++;
 
-        if (currentImage == COIN2) {
-            currentImage = COIN3;
-        }
+        if (animationTick >= animationSpeed) {
+            animationTick = 0;
 
-        if (currentImage == COIN3) {
-            currentImage = COIN1;
+            if (currentImage == COIN1) {
+                currentImage = COIN2;
+            } else if (currentImage == COIN2) {
+                currentImage = COIN3;
+            } else {
+                currentImage = COIN1;
+            }
         }
     }
 
@@ -46,8 +51,8 @@ public class Money {
         coins.clear();
 
         for (int i = 0; i < 50; i++) {
-            int x = random.nextInt(100, 1300);
-            int y = random.nextInt(100, 800);
+            int x = random.nextInt(100, 1100);
+            int y = random.nextInt(100, 700);
 
             coins.add(new Money(x, y));
         }
