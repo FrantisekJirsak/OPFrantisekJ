@@ -11,9 +11,9 @@ public class Money {
     private int y;
     private boolean isCollected;
 
-    private final ImageIcon COIN1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_1.png")));
-    private final ImageIcon COIN2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_2.png")));
-    private final ImageIcon COIN3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_3.png")));
+    private final ImageIcon COIN1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/money/money_frame_1.png")));
+    private final ImageIcon COIN2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/money/money_frame_2.png")));
+    private final ImageIcon COIN3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/money/money_frame_3.png")));
     private ImageIcon currentImage = COIN1;
 
     public Money(int x, int y) {
