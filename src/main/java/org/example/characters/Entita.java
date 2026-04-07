@@ -1,7 +1,5 @@
 package org.example.characters;
 
-import org.example.basics.Money;
-
 import java.util.ArrayList;
 
 public class Entita {

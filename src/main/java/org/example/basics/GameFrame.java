@@ -24,7 +24,6 @@ public class GameFrame extends JPanel {
     Player player = new Player(60,800, keyInput);
     Enemy enemy = new Enemy(getX(), getY());
     ArrayList<Enemy> enemies = new ArrayList<>();
-    ArrayList<Money> coins = new ArrayList<>();
     int budget = 0;
     Button button = new Button();
     Background background = new Background(this);
@@ -47,12 +46,6 @@ public class GameFrame extends JPanel {
                 enemy.moveEnemy();
             }
 
-            for (Money coin : coins) {
-                coin.animateMoney();
-                if (coin.checkCollected(player.getBounds())) {
-                        budget += 1;
-                }
-            }
 
             if (keyInput.isKeyPressed(KeyEvent.VK_P)){
                 switchMenu = false;
@@ -61,7 +54,6 @@ public class GameFrame extends JPanel {
             if (keyInput.isKeyPressed(KeyEvent.VK_O)){
                 switchMenu = true;
                 player.resetPosition();
-                Money.spawnMoney(coins);
             }
 
             System.out.println(switchMenu);
@@ -91,9 +83,6 @@ public class GameFrame extends JPanel {
     private void paintGame(Graphics g){
         background.drawBackground(g);
         player.drawPlayer(g);
-        for (Money coin : coins) {
-            coin.draw(g);
-        }
         g.drawString("Press P for Main Menu", 20,20);
         g.drawString("Good Luck", 630,20);
         g.drawString("Money:" + budget, 1220, 20);

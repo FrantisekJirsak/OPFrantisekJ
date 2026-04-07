@@ -1,6 +1,5 @@
 package org.example.shop;
 
-import org.example.basics.Money;
 
 import java.awt.*;
 
@@ -9,8 +8,5 @@ public class Magnet extends Item{
         super(name, id);
     }
 
-    public void collectMoney(Money money){
-
-    }
 
 }
