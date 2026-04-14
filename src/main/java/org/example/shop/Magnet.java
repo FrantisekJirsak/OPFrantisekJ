@@ -11,9 +11,9 @@ public class Magnet extends Item{
     private int animationTick = 0;
     private final int animationSpeed = 12;
 
-    private final ImageIcon MAGNET1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_1.png")));
-    private final ImageIcon MAGNET2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_2.png")));
-    private final ImageIcon MAGNET3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_3.png")));
+    private final ImageIcon MAGNET1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png")));
+    private final ImageIcon MAGNET2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_2.png")));
+    private final ImageIcon MAGNET3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_3.png")));
 
     private ImageIcon currentImage = MAGNET1;
 
@@ -43,7 +43,7 @@ public class Magnet extends Item{
     public static void showInStore(Graphics g){
         int x = 250;
         int y = 10;
-        g.drawImage()
+        g.drawImage(curre)
 
 
     }
