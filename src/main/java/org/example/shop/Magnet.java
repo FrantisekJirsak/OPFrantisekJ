@@ -8,6 +8,11 @@ import java.util.Objects;
 
 public class Magnet extends Item{
 
+    public Magnet(String name, int id) {
+        int price = 10;
+        super(name, id);
+    }
+
     private int animationTick = 0;
     private final int animationSpeed = 12;
 
@@ -17,11 +22,6 @@ public class Magnet extends Item{
 
     private ImageIcon currentImage = MAGNET1;
 
-
-    public Magnet(String name, int id) {
-        int price = 10;
-        super(name, id);
-    }
 
     public void animateMagnet(){
         animationTick++;
@@ -40,10 +40,10 @@ public class Magnet extends Item{
 
     }
 
-    public static void showInStore(Graphics g){
+    public void showInStore(Graphics g){
         int x = 250;
         int y = 10;
-        g.drawImage(curre)
+        g.drawImage(currentImage, x, y, this)
 
 
     }
