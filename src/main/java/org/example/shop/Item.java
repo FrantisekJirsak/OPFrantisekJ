@@ -1,7 +1,5 @@
 package org.example.shop;
 
-import java.awt.*;
-
 public class Item {
     String name;
     int id;
@@ -11,7 +9,4 @@ public class Item {
         this.id = id;
     }
 
-    public void drawItem(Graphics g){
-
-    }
 }

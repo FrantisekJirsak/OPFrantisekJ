@@ -1,9 +1,5 @@
 package org.example.basics;
 
-
-import org.example.characters.Player;
-import org.example.menu.MenuPanel;
-
 import javax.swing.*;
 
 public class Game extends JFrame {
