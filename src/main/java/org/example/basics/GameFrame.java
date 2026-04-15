@@ -22,7 +22,7 @@ public class GameFrame extends JPanel {
     private static final int timeDelay = 16;
     private final MouseInput mouseInput = new MouseInput();
     private final KeyInput keyInput = new KeyInput();
-    Player player = new Player(60,800, keyInput);
+    Player player = new Player(100,800, keyInput);
     ArrayList<Enemy> enemies = new ArrayList<>();
     ArrayList<Money> coins = new ArrayList<>();
     int budget = 0;
@@ -79,7 +79,7 @@ public class GameFrame extends JPanel {
                     budget = 0;
                 }
 
-                System.out.println(switchMenu);
+                System.out.println(player.hasMagnet);
 
             }
 
@@ -105,7 +105,7 @@ public class GameFrame extends JPanel {
 
     private void paintGame(Graphics g){
         background.drawBackground(g);
-        magnet.showMagnetInStore(g);
+        magnet.drawMagnet(g, player);
         player.drawPlayer(g);
         for (Money coin : coins) {
             coin.draw(g);

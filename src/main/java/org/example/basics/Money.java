@@ -78,14 +78,13 @@ public class Money {
         double distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < radius) {
-            // normalize direction
             double directionX = dx / distance;
             double directionY = dy / distance;
 
-            // move coin toward player
             this.x += directionX * speed;
             this.y += directionY * speed;
         }
     }
+
 
 }

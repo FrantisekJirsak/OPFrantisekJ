@@ -2,6 +2,7 @@ package org.example.shop;
 
 import org.example.basics.GameFrame;
 import org.example.characters.Entita;
+import org.example.characters.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,6 @@ public class Magnet extends Item{
     private int xInShop = 300;
     private int yInShop = 10;
     private boolean gainedMagnet = false;
-    Entita player;
 
     private int animationTick = 0;
     private final int animationSpeed = 12;
@@ -47,15 +47,18 @@ public class Magnet extends Item{
 
     }
 
-    public void activateMagnet(){
+    public void activateMagnet(Player player){
         if (gainedMagnet){
+            xInShop = player.getX();
 
         }
     }
 
-    public void showMagnetInStore(Graphics g){
+    public void drawMagnet(Graphics g, Player player){
         if (gainedMagnet){
-            g.drawImage(currentImage, xInShop, yInShop, null);
+            int offsetX = 40;
+            int offsetY = 0;
+            g.drawImage(currentImage, player.x + offsetX, player.y + offsetY, null);
         } else {
             g.drawImage(MAGNET_SHOW, xInShop, yInShop, null);
         }

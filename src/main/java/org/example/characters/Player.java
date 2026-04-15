@@ -78,6 +78,10 @@ public class Player extends Entita{
         this.y = startY;
     }
 
+    public void setGainedMagnet(boolean hasMagnet) {
+        this.hasMagnet = hasMagnet;
+    }
+
     public void keepOut(){
         getBounds();
         if (y <= 100){
