@@ -16,8 +16,7 @@ public class Player extends Entita{
     private int startX = x;
     private int startY = y;
     private boolean hasWeapon = false;
-    public boolean hasMagnet = true;
-    private boolean isMoving = false;
+    public boolean hasMagnet = false;
     public int money = 0;
     private int score = 0;
 
@@ -63,14 +62,11 @@ public class Player extends Entita{
         }
 
     public void onBorders(Player player, Enemy enemy){
-        if (player.x == enemy.x){
-            player.isHurt = true;
+        if (player.getBounds().intersects(enemy.getBounds())){
+            isHurt = true;
         }
 
-    }
 
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, 48, 48);
     }
 
     public void resetPosition(){

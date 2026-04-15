@@ -66,7 +66,10 @@ public class GameFrame extends JPanel {
                     }
                 }
 
-                magnet.animateMagnet();
+                if (player.hasMagnet){
+                    magnet.animateMagnet(player);
+                    player.setGainedMagnet(true);
+                }
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_P)){
                     switchMenu = false;

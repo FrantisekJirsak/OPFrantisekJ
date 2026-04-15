@@ -1,5 +1,6 @@
 package org.example.characters;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Entita {
@@ -12,12 +13,12 @@ public class Entita {
         this.y = y;
     }
 
-    public void getBounds(Player player, Enemy enemy){
-        if (x >= enemy.x){
-            isHurt = true;
-        }
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, 48, 48);
 
     }
+
+
 
     public int getX() {
         return x;

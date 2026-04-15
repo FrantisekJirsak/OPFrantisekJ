@@ -37,6 +37,8 @@ public class Enemy extends Entita {
 
     }
 
+
+
     public void moveEnemy(){
         for (Enemy enemy : enemies){
             if (player.x > x){

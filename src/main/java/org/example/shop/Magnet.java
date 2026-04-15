@@ -30,21 +30,23 @@ public class Magnet extends Item{
     private Image currentImage = MAGNET1;
 
 
-    public void animateMagnet(){
-        animationTick++;
+    public void animateMagnet(Player player){
+        if (player.hasMagnet){
+            animationTick++;
 
-        if (animationTick >= animationSpeed) {
-            animationTick = 0;
+            if (animationTick >= animationSpeed) {
+                animationTick = 0;
 
-            if (currentImage == MAGNET1) {
-                currentImage = MAGNET2;
-            } else if (currentImage == MAGNET2) {
-                currentImage = MAGNET3;
-            } else {
-                currentImage = MAGNET1;
+                if (currentImage == MAGNET1) {
+                    currentImage = MAGNET2;
+                } else if (currentImage == MAGNET2) {
+                    currentImage = MAGNET3;
+                } else {
+                    currentImage = MAGNET1;
+                }
             }
-        }
 
+        }
     }
 
     public void activateMagnet(Player player){
