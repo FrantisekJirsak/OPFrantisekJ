@@ -60,6 +60,12 @@ public class GameFrame extends JPanel {
                     }
                 }
 
+                if (player.hasMagnet) {
+                    for (Money money : coins) {
+                        money.attractToPlayer(player, 150, 4); // radius = 150px, speed = 4
+                    }
+                }
+
                 magnet.animateMagnet();
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_P)){

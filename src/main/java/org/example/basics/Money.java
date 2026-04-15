@@ -1,5 +1,7 @@
 package org.example.basics;
 
+import org.example.characters.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -67,6 +69,23 @@ public class Money {
             return true;
         }
         return false;
+    }
+
+    public void attractToPlayer(Player player, int radius, int speed) {
+        double dx = player.x - this.x;
+        double dy = player.y - this.y;
+
+        double distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < radius) {
+            // normalize direction
+            double directionX = dx / distance;
+            double directionY = dy / distance;
+
+            // move coin toward player
+            this.x += directionX * speed;
+            this.y += directionY * speed;
+        }
     }
 
 }
