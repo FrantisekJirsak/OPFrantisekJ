@@ -81,8 +81,8 @@ public class Money {
             double directionX = dx / distance;
             double directionY = dy / distance;
 
-            this.x += directionX * speed;
-            this.y += directionY * speed;
+            this.x += (int) (directionX * speed);
+            this.y += (int) (directionY * speed);
         }
     }
 

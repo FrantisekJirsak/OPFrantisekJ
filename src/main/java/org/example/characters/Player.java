@@ -16,7 +16,7 @@ public class Player extends Entita{
     private int startX = x;
     private int startY = y;
     private boolean hasWeapon = false;
-    public boolean hasMagnet = false;
+    public boolean hasMagnet = true;
     public int money = 0;
     private int score = 0;
 
