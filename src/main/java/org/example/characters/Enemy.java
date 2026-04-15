@@ -14,6 +14,11 @@ public class Enemy extends Entita {
     ArrayList<Enemy> enemies = new ArrayList<>();
     Player player;
 
+    public Enemy(int x, int y, Player player) {
+        super(x, y);
+        this.player = player;
+    }
+
     private final Image ENEMY_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_1.png"))).getImage();
     private final Image ENEMY_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_2.png"))).getImage();
     private final Image ENEMY_3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_3.png"))).getImage();
@@ -27,13 +32,13 @@ public class Enemy extends Entita {
 
     public void drawEnemies(Graphics g){
         for (Entita enemy : enemies){
-            g.drawImage(currentImage, x, y, null);
+            g.drawImage(currentImage, enemy.x, enemy.y, null);
         }
 
     }
 
     public void moveEnemy(){
-
+        for (Enemy enemy : enemies){
             if (player.x > x){
                 x += moveSpeed;
                 currentImage = ENEMY_1;
@@ -51,16 +56,16 @@ public class Enemy extends Entita {
                 currentImage = ENEMY_4;
             }
 
-
+        }
 
     }
 
-    public void spawnEnemies(Enemy enemy) {
+    public void spawnEnemies() {
         for (int i = 0; i < 49; i++){
             Random random = new Random();
-            int x = random.nextInt(1000, 1200);
+            int x = random.nextInt(500, 1200);
             int y = random.nextInt(100, 200);
-            enemies.add(enemy);
+            enemies.add(new Enemy(x,y));
         }
     }
 

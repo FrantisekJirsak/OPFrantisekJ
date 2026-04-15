@@ -6,11 +6,13 @@ import org.example.gamefield.Background;
 import org.example.inputs.KeyInput;
 import org.example.inputs.MouseInput;
 import org.example.menu.Button;
+import org.example.shop.Magnet;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static java.awt.Color.lightGray;
 
@@ -21,10 +23,10 @@ public class GameFrame extends JPanel {
     private final MouseInput mouseInput = new MouseInput();
     private final KeyInput keyInput = new KeyInput();
     Player player = new Player(60,800, keyInput);
-    Enemy enemy = new Enemy(getX(), getY());
     ArrayList<Enemy> enemies = new ArrayList<>();
     ArrayList<Money> coins = new ArrayList<>();
     int budget = 0;
+    Magnet magnet = new Magnet("Magnet", 1);
     Button button = new Button();
     Background background = new Background(this);
     private boolean switchMenu = false;
@@ -34,13 +36,18 @@ public class GameFrame extends JPanel {
         addKeyListener(keyInput);
         addMouseListener(mouseInput);
         requestFocusInWindow();
-        enemy.spawnEnemies(enemy);
 
-        new Timer(timeDelay, e -> {
+        for (Enemy enemy : enemies){
+            enemy.spawnEnemies();
+        }
+
+            new Timer(timeDelay,  e -> {
             if (!player.isHurt){
                 repaint();
 
                 player.movePlayer();
+
+                player.keepOut();
 
                 for (Enemy enemy : enemies){
                     enemy.moveEnemy();
@@ -53,6 +60,8 @@ public class GameFrame extends JPanel {
                     }
                 }
 
+                magnet.animateMagnet();
+
                 if (keyInput.isKeyPressed(KeyEvent.VK_P)){
                     switchMenu = false;
                 }
@@ -61,6 +70,7 @@ public class GameFrame extends JPanel {
                     switchMenu = true;
                     player.resetPosition();
                     Money.spawnMoney(coins);
+                    budget = 0;
                 }
 
                 System.out.println(switchMenu);
@@ -89,15 +99,19 @@ public class GameFrame extends JPanel {
 
     private void paintGame(Graphics g){
         background.drawBackground(g);
+        magnet.showMagnetInStore(g);
         player.drawPlayer(g);
         for (Money coin : coins) {
             coin.draw(g);
+        }
+
+        for (Enemy enemy : enemies){
+            enemy.drawEnemies(g);
         }
         g.drawString("Press P for Main Menu", 20,20);
         g.drawString("Good Luck", 630,20);
         g.drawString("Money:" + budget, 1220, 20);
         g.setColor(lightGray);
-        enemy.drawEnemies(g);
 
     }
 

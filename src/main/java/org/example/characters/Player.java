@@ -17,6 +17,7 @@ public class Player extends Entita{
     private int startY = y;
     private boolean hasWeapon = false;
     private boolean hasItem = false;
+    private boolean hasMagnet = false;
     private boolean isMoving = false;
     public int money = 0;
     private int score = 0;
@@ -78,8 +79,29 @@ public class Player extends Entita{
         this.y = startY;
     }
 
+    public void keepOut(){
+        getBounds();
+        if (y <= 100){
+            y += 3;
+        }
+
+        if (x >= 1200){
+            x -= 3;
+    }
+
+        if (y >= 800){
+            y -= 3;
+        }
+
+        if (x <= 100){
+            x += 3;
+
 
     }
+
+    }
+
+}
 
 
 

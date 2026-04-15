@@ -1,9 +1,11 @@
 package org.example.shop;
 
 import org.example.basics.GameFrame;
+import org.example.characters.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.util.Objects;
 
 public class Magnet extends Item{
@@ -13,14 +15,19 @@ public class Magnet extends Item{
         super(name, id);
     }
 
+    private int xInShop = 300;
+    private int yInShop = 10;
+    private boolean gainedMagnet = false;
+
     private int animationTick = 0;
     private final int animationSpeed = 12;
 
-    private final ImageIcon MAGNET1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png")));
-    private final ImageIcon MAGNET2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_2.png")));
-    private final ImageIcon MAGNET3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_3.png")));
+    private final Image MAGNET1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
+    private final Image MAGNET2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_2.png"))).getImage();
+    private final Image MAGNET3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_3.png"))).getImage();
+    private final Image MAGNET_SHOW = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_show_in_store.png"))).getImage();
 
-    private ImageIcon currentImage = MAGNET1;
+    private Image currentImage = MAGNET1;
 
 
     public void animateMagnet(){
@@ -40,10 +47,13 @@ public class Magnet extends Item{
 
     }
 
-    public void showInStore(Graphics g){
-        int x = 250;
-        int y = 10;
-        g.drawImage(currentImage, x, y, this)
+    public void showMagnetInStore(Graphics g){
+        if (gainedMagnet){
+            g.drawImage(currentImage, xInShop, yInShop, null);
+        } else {
+            g.drawImage(MAGNET_SHOW, xInShop, yInShop, null);
+        }
+
 
 
     }
