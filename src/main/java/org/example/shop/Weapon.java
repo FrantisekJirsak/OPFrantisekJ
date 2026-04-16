@@ -36,10 +36,6 @@ public class Weapon extends Item{
             g.drawImage(WEAPON_SHOW, xInShop, yInShop, null);
         }
 
-
-
-
-
     }
 
     public void deactivateMagnet(Player player){
