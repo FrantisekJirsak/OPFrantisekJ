@@ -1,7 +1,9 @@
 package org.example.inputs;
 
 import org.example.basics.GameFrame;
+import org.example.characters.Player;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -12,6 +14,7 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     private boolean rightPressed;
     private boolean middlePressed;
     GameFrame gameFrame;
+    Player player;
 
     public MouseInput(GameFrame gameFrame) {
         this.gameFrame = gameFrame;
@@ -25,6 +28,20 @@ public class MouseInput implements MouseListener, MouseMotionListener {
             case MouseEvent.BUTTON2 -> middlePressed = true;
             case MouseEvent.BUTTON3 -> rightPressed = true;
             default -> { }
+        }
+
+        int x1 = e.getX();
+        int y = e.getY();
+
+        Rectangle magnetHitbox = new Rectangle(200,10,100,100);
+        Rectangle weaponHitbox = new Rectangle(900,10,100,100);
+
+        if (magnetHitbox.contains(x1, y)) {
+            player.hasMagnet = true;
+        }
+
+        if (weaponHitbox.contains(x1, y)) {
+            player.hasWeapon = true;
         }
     }
 
