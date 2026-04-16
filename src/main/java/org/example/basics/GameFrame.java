@@ -96,10 +96,6 @@ public class GameFrame extends JPanel {
                     shootCooldown = 10;
                 }
 
-
-
-
-
                 System.out.println(player.hasMagnet);
 
             }
