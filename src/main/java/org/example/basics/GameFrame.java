@@ -8,6 +8,7 @@ import org.example.inputs.KeyInput;
 import org.example.inputs.MouseInput;
 import org.example.menu.Button;
 import org.example.shop.Magnet;
+import org.example.shop.Weapon;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,7 @@ public class GameFrame extends JPanel {
     ArrayList<Money> coins = new ArrayList<>();
     int budget = 0;
     Magnet magnet = new Magnet("Magnet", 1);
+    Weapon weapon = new Weapon("Shotgun", 2);
     Button button = new Button();
     Background background = new Background(this);
     private boolean switchMenu = false;
@@ -76,10 +78,19 @@ public class GameFrame extends JPanel {
                 if (player.hasMagnet){
                     magnet.animateMagnet(player);
                     player.setGainedMagnet(true);
+                    magnet.deactivateWeapon(player);
                 }
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_P)){
                     switchMenu = false;
+                }
+
+                if (keyInput.isKeyPressed(KeyEvent.VK_U)){
+                    player.hasWeapon = true;
+                }
+
+                if (keyInput.isKeyPressed(KeyEvent.VK_J)){
+                    player.hasMagnet = true;
                 }
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_O)){
@@ -95,6 +106,8 @@ public class GameFrame extends JPanel {
                     naboj();
                     shootCooldown = 10;
                 }
+
+
 
                 System.out.println(player.hasMagnet);
 
@@ -123,6 +136,7 @@ public class GameFrame extends JPanel {
     public void naboj(){
         if (player.hasWeapon){
             bulletList.add(new Entita(player.x, player.y));
+            weapon.deactivateMagnet(player);
         }
 
     }

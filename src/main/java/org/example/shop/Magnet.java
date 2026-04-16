@@ -57,10 +57,12 @@ public class Magnet extends Item{
             g.drawImage(MAGNET_SHOW, xInShop, yInShop, null);
         }
 
+    }
 
-
-
-
+    public void deactivateWeapon(Player player){
+        if (player.hasMagnet){
+            player.hasWeapon = false;
+        }
     }
 
 
