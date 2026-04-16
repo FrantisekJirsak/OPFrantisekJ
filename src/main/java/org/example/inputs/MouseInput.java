@@ -11,6 +11,11 @@ public class MouseInput implements MouseListener, MouseMotionListener {
     private boolean leftPressed;
     private boolean rightPressed;
     private boolean middlePressed;
+    GameFrame gameFrame;
+
+    public MouseInput(GameFrame gameFrame) {
+        this.gameFrame = gameFrame;
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -34,7 +39,10 @@ public class MouseInput implements MouseListener, MouseMotionListener {
         }
     }
 
-    @Override public void mouseClicked(MouseEvent e) {}
+    @Override public void mouseClicked(MouseEvent e) {
+        gameFrame.naboj();
+
+    }
 
     @Override public void mouseEntered(MouseEvent e) {}
 

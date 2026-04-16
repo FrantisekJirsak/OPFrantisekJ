@@ -11,6 +11,7 @@ public class Entita {
     public Entita(int x, int y) {
         this.x = x;
         this.y = y;
+
     }
 
     public Rectangle getBounds() {

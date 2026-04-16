@@ -10,15 +10,12 @@ import java.util.Objects;
 
 public class Player extends Entita{
 
-    GameFrame gameFrame;
     private KeyInput keyInput;
     private int playerSpeed = 3;
     private int startX = x;
     private int startY = y;
-    private boolean hasWeapon = false;
+    public boolean hasWeapon = true;
     public boolean hasMagnet = true;
-    public int money = 0;
-    private int score = 0;
 
     private final Image PLAYER_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_1.png"))).getImage();
     private final Image PLAYER_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_2.png"))).getImage();

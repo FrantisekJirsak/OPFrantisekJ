@@ -17,7 +17,6 @@ public class Magnet extends Item{
 
     private int xInShop = 300;
     private int yInShop = 10;
-    private boolean gainedMagnet = false;
 
     private int animationTick = 0;
     private final int animationSpeed = 12;
@@ -49,15 +48,8 @@ public class Magnet extends Item{
         }
     }
 
-    public void activateMagnet(Player player){
-        if (gainedMagnet){
-            xInShop = player.getX();
-
-        }
-    }
-
     public void drawMagnet(Graphics g, Player player){
-        if (gainedMagnet){
+        if (player.hasMagnet){
             int offsetX = 40;
             int offsetY = 0;
             g.drawImage(currentImage, player.x + offsetX, player.y + offsetY, null);

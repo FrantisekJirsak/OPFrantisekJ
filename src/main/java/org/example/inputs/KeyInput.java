@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Arrays;
 
+import static java.awt.event.KeyEvent.*;
+
 public class KeyInput implements KeyListener {
     private boolean[] keys = new boolean[256];
 
