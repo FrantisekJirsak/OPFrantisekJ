@@ -69,13 +69,10 @@ public class GameFrame extends JPanel {
                     }
                 }
 
-                if (player.hasMagnet) {
-                    for (Money money : coins) {
-                        money.attractToPlayer(player, 150, 4); // radius = 150px, speed = 4
-                    }
-                }
-
                 if (player.hasMagnet){
+                    for (Money money : coins) {
+                        money.attractToPlayer(player, 150, 4);
+                    }
                     magnet.animateMagnet(player);
                     player.setGainedMagnet(true);
                     magnet.deactivateWeapon(player);
@@ -85,19 +82,19 @@ public class GameFrame extends JPanel {
                     switchMenu = false;
                 }
 
-                if (keyInput.isKeyPressed(KeyEvent.VK_U)){
-                    player.hasWeapon = true;
-                }
-
-                if (keyInput.isKeyPressed(KeyEvent.VK_J)){
-                    player.hasMagnet = true;
-                }
-
                 if (keyInput.isKeyPressed(KeyEvent.VK_O)){
                     switchMenu = true;
                     player.resetPosition();
                     Money.spawnMoney(coins);
                     budget = 0;
+                }
+
+                if (keyInput.isKeyPressed(KeyEvent.VK_U)){
+                    player.hasMagnet = true;
+                }
+
+                if (keyInput.isKeyPressed(KeyEvent.VK_J)){
+                    player.hasWeapon = true;
                 }
 
                 nabojMove();
@@ -106,11 +103,6 @@ public class GameFrame extends JPanel {
                     naboj();
                     shootCooldown = 10;
                 }
-
-
-
-                System.out.println(player.hasMagnet);
-
             }
 
         }).start();

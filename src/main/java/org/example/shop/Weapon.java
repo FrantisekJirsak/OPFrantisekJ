@@ -16,11 +16,10 @@ public class Weapon extends Item{
     private int xInShop = 900;
     private int yInShop = 10;
 
-    private final Image WEAPON_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
-    private final Image WEAPON_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
-    private final Image WEAPON_3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
-    private final Image WEAPON_4 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
-    private final Image WEAPON_SHOW = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_show_in_store.png"))).getImage();
+    private final Image WEAPON_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
+    private final Image WEAPON_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
+    private final Image WEAPON_3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
+    private final Image WEAPON_4 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
 
 
     private final Image currentImage = WEAPON_1;
@@ -33,7 +32,7 @@ public class Weapon extends Item{
             int offsetY = 0;
             g.drawImage(currentImage, player.x + offsetX, player.y + offsetY, null);
         } else {
-            g.drawImage(WEAPON_SHOW, xInShop, yInShop, null);
+            g.drawImage(currentImage, xInShop, yInShop, null);
         }
 
     }

@@ -9,7 +9,8 @@ import java.util.Objects;
 
 public class Button{
     private boolean isApproached = true;
-    GameFrame gameFrame;
+    JButton shopButton1 = new JButton();
+    JButton shopButton2 = new JButton();
     private final Image BUTTON_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/buttons/start_button_1.png"))).getImage();
     private final Image BUTTON_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/buttons/start_button_2.png"))).getImage();
 

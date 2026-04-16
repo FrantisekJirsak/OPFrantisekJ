@@ -9,8 +9,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Enemy extends Entita {
-    private int moveSpeed = 3;
-    GameFrame gameFrame;
+    private int moveSpeed = 2;
     ArrayList<Enemy> enemies = new ArrayList<>();
     Player player;
 
@@ -41,20 +40,20 @@ public class Enemy extends Entita {
 
     public void moveEnemy(){
         for (Enemy enemy : enemies){
-            if (player.x > x){
-                x += moveSpeed;
+            if (player.x > enemy.x){
+                enemy.x += moveSpeed;
                 currentImage = ENEMY_1;
             }
-            if (player.x < x){
-                x -= moveSpeed;
+            if (player.x < enemy.x){
+                enemy.x -= moveSpeed;
                 currentImage = ENEMY_2;
             }
-            if (player.y > y){
-                y += moveSpeed;
+            if (player.y > enemy.y){
+                enemy.y += moveSpeed;
                 currentImage = ENEMY_3;
             }
-            if (player.y < y){
-                y -= moveSpeed;
+            if (player.y < enemy.y){
+                enemy.y -= moveSpeed;
                 currentImage = ENEMY_4;
             }
 
