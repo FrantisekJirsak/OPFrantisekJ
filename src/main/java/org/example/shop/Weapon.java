@@ -20,7 +20,7 @@ public class Weapon extends Item{
     private final Image WEAPON_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
     private final Image WEAPON_3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
     private final Image WEAPON_4 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
-    private final Image WEAPON_SHOW = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_frame_1.png"))).getImage();
+    private final Image WEAPON_SHOW = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_show_in_store.png"))).getImage();
 
 
     private final Image currentImage = WEAPON_1;

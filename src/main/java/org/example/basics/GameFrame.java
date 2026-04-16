@@ -148,6 +148,7 @@ public class GameFrame extends JPanel {
     private void paintGame(Graphics g){
         background.drawBackground(g);
         magnet.drawMagnet(g, player);
+        weapon.drawWeapon(g, player);
         player.drawPlayer(g);
         for (Money coin : coins) {
             coin.draw(g);
