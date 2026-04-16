@@ -153,7 +153,10 @@ public class GameFrame extends JPanel {
         }
 
         for (Entita naboj : bulletList){
-            g.drawImage(BULLET_DOWN, naboj.getX(), naboj.getY(), null);
+            if (keyInput.isKeyPressed(KeyEvent.VK_W)){
+                g.drawImage(BULLET_UP, naboj.getX(), naboj.getY(), null);
+
+            }
         }
         g.drawString("Press P for Main Menu", 20,20);
         g.drawString("Good Luck", 630,20);
