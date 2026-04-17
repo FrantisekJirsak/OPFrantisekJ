@@ -2,9 +2,11 @@ package org.example.shop;
 
 import org.example.basics.GameFrame;
 import org.example.characters.Player;
+import org.example.inputs.KeyInput;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.Objects;
 
 public class Weapon extends Item{
@@ -17,12 +19,12 @@ public class Weapon extends Item{
     private int yInShop = 10;
 
     private final Image WEAPON_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
-    private final Image WEAPON_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
-    private final Image WEAPON_3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
-    private final Image WEAPON_4 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
+    private final Image WEAPON_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_2.png"))).getImage();
+    private final Image WEAPON_3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_3.png"))).getImage();
+    private final Image WEAPON_4 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_4.png"))).getImage();
 
 
-    private final Image currentImage = WEAPON_1;
+    private Image currentImage = WEAPON_1;
 
 
 
@@ -30,11 +32,45 @@ public class Weapon extends Item{
         if (player.hasWeapon){
             int offsetX = 40;
             int offsetY = 0;
+
+            switch (player.direction){
+                case "RIGHT" -> {
+                    currentImage = WEAPON_1;
+                    offsetX = 40;
+                    offsetY = 0;
+                }
+                case "LEFT" -> {
+                    currentImage = WEAPON_2;
+                    offsetX = -40;
+                    offsetY = 0;
+                }
+                case "UP" -> {
+                    currentImage = WEAPON_3;
+                    offsetX = 10;
+                    offsetY = -30;
+                }
+                case "DOWN" -> {
+                    currentImage = WEAPON_4;
+                    offsetX = 10;
+                    offsetY = 30;
+                }
+            }
+
             g.drawImage(currentImage, player.x + offsetX, player.y + offsetY, null);
         } else {
             g.drawImage(currentImage, xInShop, yInShop, null);
         }
 
+    }
+
+    public void directWeapon(KeyInput keyInput){
+        if (keyInput.isKeyPressed(KeyEvent.VK_A)){
+            currentImage = WEAPON_2;
+
+        }
+         if (keyInput.isKeyPressed(KeyEvent.VK_D)){
+             currentImage = WEAPON_1;
+         }
     }
 
     public void deactivateMagnet(Player player){

@@ -99,6 +99,8 @@ public class GameFrame extends JPanel {
                     player.hasWeapon = true;
                 }
 
+                weapon.directWeapon(keyInput);
+
                 nabojMove();
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_L) && shootCooldown == 0) {
@@ -129,14 +131,39 @@ public class GameFrame extends JPanel {
 
     public void naboj(){
         if (player.hasWeapon){
-            bulletList.add(new Entita(player.x, player.y));
+            int dx = 0;
+            int dy = 0;
+            int offsetX = 0;
+            int offsetY = 0;
+
+            switch (player.direction){
+                case "UP" -> {
+                    dy = -5;
+                    offsetY = -80;
+                }
+                case "DOWN" -> {
+                    dy = 5;
+                    offsetY = 80;
+                }
+                case "LEFT" -> {
+                    dx = -5;
+                    offsetX = -80;
+                }
+                case "RIGHT" -> {
+                    dx = 5;
+                    offsetX = 100;
+                }
+            }
+
+            bulletList.add(new Entita(player.getX() + offsetX, player.getY() + offsetY, dx, dy));
             weapon.deactivateMagnet(player);
+
         }
 
     }
 
     private void nabojMove(){
-        bulletList.forEach(i -> i.y += 5);
+        bulletList.forEach(Entita::move);
     }
 
     private void paintGame(Graphics g){
@@ -153,10 +180,16 @@ public class GameFrame extends JPanel {
         }
 
         for (Entita naboj : bulletList){
-            if (keyInput.isKeyPressed(KeyEvent.VK_W)){
-                g.drawImage(BULLET_UP, naboj.getX(), naboj.getY(), null);
-
+            if (naboj.dx > 0) {
+                g.drawImage(BULLET_RIGHT, naboj.x, naboj.y, null);
+            } else if (naboj.dx < 0) {
+                g.drawImage(BULLET_LEFT, naboj.x, naboj.y, null);
+            } else if (naboj.dy < 0) {
+                g.drawImage(BULLET_UP, naboj.x, naboj.y, null);
+            } else if (naboj.dy > 0) {
+                g.drawImage(BULLET_DOWN, naboj.x, naboj.y, null);
             }
+
         }
         g.drawString("Press P for Main Menu", 20,20);
         g.drawString("Good Luck", 630,20);

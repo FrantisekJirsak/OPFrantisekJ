@@ -16,6 +16,9 @@ public class Player extends Entita{
     private int startY = y;
     public boolean hasWeapon = true;
     public boolean hasMagnet = true;
+    public String direction = "DOWN";
+    int dx;
+    int dy;
 
     private final Image PLAYER_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_1.png"))).getImage();
     private final Image PLAYER_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_2.png"))).getImage();
@@ -25,8 +28,9 @@ public class Player extends Entita{
     private Image currentImage = PLAYER_1;
 
     public Player(int x, int y, KeyInput keyInput) {
-        super(x, y);
+        super(x, y, 0,0);
         this.keyInput = keyInput;
+
         this.startX = startX;
         this.startY = startY;
     }
@@ -41,18 +45,22 @@ public class Player extends Entita{
     public void movePlayer(){
         if (keyInput.isKeyPressed(KeyEvent.VK_W)){
             y -= playerSpeed;
+            direction = "UP";
             currentImage = PLAYER_1;
         }
         if (keyInput.isKeyPressed(KeyEvent.VK_S)){
             y += playerSpeed;
+            direction = "DOWN";
             currentImage = PLAYER_2;
         }
         if (keyInput.isKeyPressed(KeyEvent.VK_A)){
             x -= playerSpeed;
+            direction = "LEFT";
             currentImage = PLAYER_3;
         }
         if (keyInput.isKeyPressed(KeyEvent.VK_D)){
             x += playerSpeed;
+            direction = "RIGHT";
             currentImage = PLAYER_4;
         }
 

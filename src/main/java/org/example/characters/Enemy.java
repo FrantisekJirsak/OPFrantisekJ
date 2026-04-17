@@ -14,7 +14,7 @@ public class Enemy extends Entita {
     Player player;
 
     public Enemy(int x, int y, Player player) {
-        super(x, y);
+        super(x, y, player.dx, player.dy);
         this.player = player;
     }
 
@@ -24,10 +24,6 @@ public class Enemy extends Entita {
     private final Image ENEMY_4 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_4.png"))).getImage();
 
     private Image currentImage = ENEMY_1;
-
-    public Enemy(int x, int y) {
-        super(x, y);
-    }
 
     public void drawEnemies(Graphics g){
         for (Entita enemy : enemies){
@@ -66,7 +62,7 @@ public class Enemy extends Entita {
             Random random = new Random();
             int x = random.nextInt(500, 1200);
             int y = random.nextInt(100, 200);
-            enemies.add(new Enemy(x,y));
+            enemies.add(new Enemy(x,y, player));
         }
     }
 

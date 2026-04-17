@@ -6,17 +6,24 @@ import java.util.ArrayList;
 public class Entita {
 
     public int x,y;
+    public int dx, dy;
     public boolean isHurt = false;
 
-    public Entita(int x, int y) {
+    public Entita(int x, int y, int dx, int dy) {
         this.x = x;
         this.y = y;
-
+        this.dx = dx;
+        this.dy = dy;
     }
 
     public Rectangle getBounds() {
         return new Rectangle(x, y, 48, 48);
 
+    }
+
+    public void move(){
+        x += dx;
+        y += dy;
     }
 
 
