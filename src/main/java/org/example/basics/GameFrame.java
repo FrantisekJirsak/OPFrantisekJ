@@ -49,7 +49,7 @@ public class GameFrame extends JPanel {
         requestFocusInWindow();
 
         for (Enemy enemy : enemies){
-            enemy.spawnEnemies();
+            enemy.spawnEnemies(enemy);
         }
 
             new Timer(timeDelay,  e -> {

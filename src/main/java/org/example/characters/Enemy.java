@@ -57,7 +57,7 @@ public class Enemy extends Entita {
 
     }
 
-    public void spawnEnemies() {
+    public void spawnEnemies(Enemy enemy) {
         for (int i = 0; i < 49; i++){
             Random random = new Random();
             int x = random.nextInt(500, 1200);

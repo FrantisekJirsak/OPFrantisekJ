@@ -7,7 +7,10 @@ import org.example.inputs.KeyInput;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public class Weapon extends Item{
     public Weapon(String name, int id) {
@@ -18,10 +21,11 @@ public class Weapon extends Item{
     private int xInShop = 900;
     private int yInShop = 10;
 
-    private final Image WEAPON_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
-    private final Image WEAPON_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_2.png"))).getImage();
-    private final Image WEAPON_3 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_3.png"))).getImage();
-    private final Image WEAPON_4 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_4.png"))).getImage();
+    private final Image WEAPON_1 = new ImageIcon(requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_1.png"))).getImage();
+    private final Image WEAPON_2 = new ImageIcon(requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_2.png"))).getImage();
+    private final Image WEAPON_3 = new ImageIcon(requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_3.png"))).getImage();
+    private final Image WEAPON_4 = new ImageIcon(requireNonNull(GameFrame.class.getResource("/weapons/shotgun_frame_4.png"))).getImage();
+    private final Image WEAPON_IN_STORE = new ImageIcon(requireNonNull(GameFrame.class.getResource("/weapons/weapon_show_in_store.png"))).getImage();
 
 
     private Image currentImage = WEAPON_1;
@@ -58,7 +62,7 @@ public class Weapon extends Item{
 
             g.drawImage(currentImage, player.x + offsetX, player.y + offsetY, null);
         } else {
-            g.drawImage(currentImage, xInShop, yInShop, null);
+            g.drawImage(WEAPON_IN_STORE, xInShop, yInShop, null);
         }
 
     }

@@ -16,7 +16,7 @@ public class Player extends Entita{
     private int startY = y;
     public boolean hasWeapon = true;
     public boolean hasMagnet = true;
-    public String direction = "DOWN";
+    public String direction = "UP";
     int dx;
     int dy;
 
