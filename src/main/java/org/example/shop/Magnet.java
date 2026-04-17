@@ -65,5 +65,12 @@ public class Magnet extends Item{
         }
     }
 
+    public void buyMagnet(Player player, GameFrame gameFrame) {
+        if (gameFrame.budget >= 10) {
+            gameFrame.budget -= 10;
+            player.hasMagnet = true;
+        }
+    }
+
 
 }

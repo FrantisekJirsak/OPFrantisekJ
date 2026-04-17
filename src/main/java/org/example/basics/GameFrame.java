@@ -43,13 +43,17 @@ public class GameFrame extends JPanel {
     private final Image BULLET_LEFT = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_left.png"))).getImage();
     private final Image BULLET_UP = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_up.png"))).getImage();
     private final Image BULLET_DOWN = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_down.png"))).getImage();
+
     public GameFrame(){
 
         setFocusable(true);
         addKeyListener(keyInput);
         addMouseListener(mouseInput);
         requestFocusInWindow();
-
+        magnetButton.addActionListener(e -> magnet.buyMagnet(player, this));
+        weaponButton.addActionListener(e -> weapon.buyWeapon(player, this));
+        add(magnetButton);
+        add(weaponButton);
 
             new Timer(timeDelay,  e -> {
 

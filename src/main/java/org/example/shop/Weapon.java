@@ -80,4 +80,11 @@ public class Weapon extends Item{
             player.hasMagnet = false;
         }
     }
+
+    public void buyWeapon(Player player, GameFrame gameFrame) {
+        if (gameFrame.budget >= 40) {
+            gameFrame.budget -= 40;
+            player.hasWeapon = true;
+        }
+    }
 }
