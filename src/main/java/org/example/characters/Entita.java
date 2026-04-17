@@ -1,7 +1,6 @@
 package org.example.characters;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Entita {
 

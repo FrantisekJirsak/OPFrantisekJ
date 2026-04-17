@@ -19,8 +19,8 @@ public class Player extends Entita{
     public boolean obtainedMagnet = false;
     public boolean hasMagnet = true;
     public String direction = "UP";
-    int dx;
-    int dy;
+    public int dx;
+    public int dy;
 
     private final Image PLAYER_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_1.png"))).getImage();
     private final Image PLAYER_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_2.png"))).getImage();
@@ -68,13 +68,6 @@ public class Player extends Entita{
 
         }
 
-    public void onBorders(Player player, Enemy enemy){
-        if (player.getBounds().intersects(enemy.getBounds())){
-            isHurt = true;
-        }
-
-
-    }
 
     public void resetPosition(){
         this.x = startX;
@@ -105,6 +98,10 @@ public class Player extends Entita{
 
     }
 
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, 64, 64);
     }
 
 }

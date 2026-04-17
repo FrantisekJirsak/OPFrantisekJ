@@ -26,7 +26,7 @@ public class Money {
         this.y = y;
     }
 
-    public void draw(Graphics g) {
+    public void drawMoney(Graphics g) {
         if (!isCollected) {
             g.drawImage(currentImage.getImage(), x, y, null);
         }

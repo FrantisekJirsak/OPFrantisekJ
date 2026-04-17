@@ -27,6 +27,8 @@ public class GameFrame extends JPanel {
     Player player = new Player(100,800, keyInput);
     ArrayList<Enemy> enemies = new ArrayList<>();
     ArrayList<Money> coins = new ArrayList<>();
+    ArrayList<Enemy> enemiesToRemove = new ArrayList<>();
+    ArrayList<Entita> bulletsToRemove = new ArrayList<>();
     public int budget = 0;
     Magnet magnet = new Magnet("Magnet", 1, 10);
     Weapon weapon = new Weapon("Shotgun", 2, 40);
@@ -48,11 +50,12 @@ public class GameFrame extends JPanel {
         addMouseListener(mouseInput);
         requestFocusInWindow();
 
-        for (Enemy enemy : enemies){
-            enemy.spawnEnemies(enemy);
-        }
 
             new Timer(timeDelay,  e -> {
+
+                for (Enemy enemy : enemies){
+                    spawnEnemies();
+                }
             if (!player.isHurt){
                 repaint();
 
@@ -99,6 +102,20 @@ public class GameFrame extends JPanel {
                     player.hasWeapon = true;
                 }
 
+                for (Enemy enemy : enemies) {
+                    for (Entita bullet : bulletList) {
+                        Rectangle bulletBounds = new Rectangle(bullet.x, bullet.y, 16, 16);
+
+                        if (enemy.getBounds().intersects(bulletBounds)) {
+                            enemiesToRemove.add(enemy);
+                            bulletsToRemove.add(bullet);
+                        }
+                    }
+                }
+
+                enemies.removeAll(enemiesToRemove);
+                bulletList.removeAll(bulletsToRemove);
+
                 weapon.directWeapon(keyInput);
 
                 nabojMove();
@@ -106,6 +123,12 @@ public class GameFrame extends JPanel {
                 if (keyInput.isKeyPressed(KeyEvent.VK_L) && shootCooldown == 0) {
                     naboj();
                     shootCooldown = 10;
+                }
+
+                for (Enemy enemy : enemies) {
+                    if (enemy.getBounds().intersects(player.getBounds())) {
+                        player.isHurt = true;
+                    }
                 }
             }
 
@@ -168,15 +191,15 @@ public class GameFrame extends JPanel {
 
     private void paintGame(Graphics g){
         background.drawBackground(g);
+
+        for (Enemy enemy : enemies){
+            enemy.drawEnemies(g);
+        }
         magnet.drawMagnet(g, player);
         weapon.drawWeapon(g, player);
         player.drawPlayer(g);
         for (Money coin : coins) {
-            coin.draw(g);
-        }
-
-        for (Enemy enemy : enemies){
-            enemy.drawEnemies(g);
+            coin.drawMoney(g);
         }
 
         for (Entita naboj : bulletList){
@@ -200,5 +223,13 @@ public class GameFrame extends JPanel {
 
     public boolean isSwitchMenu() {
         return switchMenu;
+    }
+
+    private void spawnEnemies() {
+        for (int i = 0; i < 20; i++) {
+            int x = (int)(Math.random() * 1200);
+            int y = (int)(Math.random() * 800);
+            enemies.add(new Enemy(x, y, player));
+        }
     }
 }
