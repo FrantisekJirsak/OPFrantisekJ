@@ -63,7 +63,8 @@ public class GameFrame extends JPanel {
         add(magnetButton);
         add(weaponButton);
 
-            new Timer(timeDelay,  e -> {
+
+        new Timer(timeDelay,  e -> {
 
                 for (Enemy enemy : enemies){
                     spawnEnemies();
@@ -142,6 +143,8 @@ public class GameFrame extends JPanel {
                         player.isHurt = true;
                     }
                 }
+
+                System.out.println(isSwitchMenu());
             }
 
         }).start();
