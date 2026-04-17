@@ -50,8 +50,16 @@ public class GameFrame extends JPanel {
         addKeyListener(keyInput);
         addMouseListener(mouseInput);
         requestFocusInWindow();
-        magnetButton.addActionListener(e -> magnet.buyMagnet(player, this));
-        weaponButton.addActionListener(e -> weapon.buyWeapon(player, this));
+        magnetButton.addActionListener(e -> {
+            magnet.buyMagnet(player, this);
+            requestFocusInWindow();
+        });
+
+        weaponButton.addActionListener(e -> {
+            weapon.buyWeapon(player, this);
+            requestFocusInWindow();
+        });
+
         add(magnetButton);
         add(weaponButton);
 
