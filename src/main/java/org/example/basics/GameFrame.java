@@ -27,9 +27,9 @@ public class GameFrame extends JPanel {
     Player player = new Player(100,800, keyInput);
     ArrayList<Enemy> enemies = new ArrayList<>();
     ArrayList<Money> coins = new ArrayList<>();
-    int budget = 0;
-    Magnet magnet = new Magnet("Magnet", 1);
-    Weapon weapon = new Weapon("Shotgun", 2);
+    public int budget = 0;
+    Magnet magnet = new Magnet("Magnet", 1, 10);
+    Weapon weapon = new Weapon("Shotgun", 2, 40);
     JButton magnetButton = new JButton();
     JButton weaponButton = new JButton();
     Button button = new Button();

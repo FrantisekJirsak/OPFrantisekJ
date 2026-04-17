@@ -10,10 +10,6 @@ import java.util.Objects;
 
 public class Magnet extends Item{
 
-    public Magnet(String name, int id) {
-        int price = 10;
-        super(name, id);
-    }
 
     private int xInShop = 300;
     private int yInShop = 10;
@@ -27,6 +23,10 @@ public class Magnet extends Item{
     private final Image MAGNET_SHOW = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/magnets/magnet_show_in_store.png"))).getImage();
 
     private Image currentImage = MAGNET1;
+
+    public Magnet(String name, int id, int price) {
+        super(name, id, price);
+    }
 
 
     public void animateMagnet(Player player){

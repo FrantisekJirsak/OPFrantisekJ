@@ -7,16 +7,11 @@ import org.example.inputs.KeyInput;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
-import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
 public class Weapon extends Item{
-    public Weapon(String name, int id) {
-        int price = 30;
-        super(name, id);
-    }
+
 
     private int xInShop = 900;
     private int yInShop = 10;
@@ -30,6 +25,9 @@ public class Weapon extends Item{
 
     private Image currentImage = WEAPON_1;
 
+    public Weapon(String name, int id, int price) {
+        super(name, id, price);
+    }
 
 
     public void drawWeapon(Graphics g, Player player){
