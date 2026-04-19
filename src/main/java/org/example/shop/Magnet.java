@@ -1,7 +1,6 @@
 package org.example.shop;
 
 import org.example.basics.GameFrame;
-import org.example.characters.Entita;
 import org.example.characters.Player;
 
 import javax.swing.*;
@@ -69,6 +68,7 @@ public class Magnet extends Item{
         if (gameFrame.budget >= 10) {
             gameFrame.budget -= 10;
             player.hasMagnet = true;
+            player.hasWeapon = false;
         }
     }
 

@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 import static java.awt.Color.lightGray;
 
@@ -62,13 +63,11 @@ public class GameFrame extends JPanel {
 
         add(magnetButton);
         add(weaponButton);
+        spawnEnemies();
 
 
         new Timer(timeDelay,  e -> {
 
-                for (Enemy enemy : enemies){
-                    spawnEnemies();
-                }
             if (!player.isHurt){
                 repaint();
 
@@ -102,6 +101,8 @@ public class GameFrame extends JPanel {
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_O)){
                     switchMenu = true;
+                    player.hasWeapon = false;
+                    player.hasMagnet = false;
                     player.resetPosition();
                     Money.spawnMoney(coins);
                     budget = 0;
@@ -116,14 +117,10 @@ public class GameFrame extends JPanel {
                 }
 
                 for (Enemy enemy : enemies) {
-                    for (Entita bullet : bulletList) {
-                        Rectangle bulletBounds = new Rectangle(bullet.x, bullet.y, 16, 16);
-
-                        if (enemy.getBounds().intersects(bulletBounds)) {
-                            enemiesToRemove.add(enemy);
-                            bulletsToRemove.add(bullet);
-                        }
+                    for (Entita bullet : bulletList){
+                        weapon.deleteBullet(enemy, bulletList);
                     }
+
                 }
 
                 enemies.removeAll(enemiesToRemove);
@@ -143,8 +140,6 @@ public class GameFrame extends JPanel {
                         player.isHurt = true;
                     }
                 }
-
-                System.out.println(isSwitchMenu());
             }
 
         }).start();
@@ -241,9 +236,10 @@ public class GameFrame extends JPanel {
     }
 
     private void spawnEnemies() {
+        Random random = new Random();
         for (int i = 0; i < 20; i++) {
-            int x = (int)(Math.random() * 1200);
-            int y = (int)(Math.random() * 800);
+            int x = random.nextInt(100,1000);
+            int y = random.nextInt(100,150);
             enemies.add(new Enemy(x, y, player));
         }
     }

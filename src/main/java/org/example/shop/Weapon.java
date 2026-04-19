@@ -1,12 +1,15 @@
 package org.example.shop;
 
 import org.example.basics.GameFrame;
+import org.example.characters.Enemy;
+import org.example.characters.Entita;
 import org.example.characters.Player;
 import org.example.inputs.KeyInput;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import static java.util.Objects.requireNonNull;
 
@@ -85,6 +88,15 @@ public class Weapon extends Item{
         if (gameFrame.budget >= 40) {
             gameFrame.budget -= 40;
             player.hasWeapon = true;
+            player.hasMagnet = false;
+        }
+    }
+
+    public void deleteBullet(Enemy enemy, ArrayList<Entita> bulletlist){
+        for (Entita bullet : bulletlist){
+            if (bullet.getBounds().intersects(enemy.getBounds())){
+                bulletlist.remove(bullet);
+            }
         }
     }
 }
