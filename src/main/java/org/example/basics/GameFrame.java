@@ -31,6 +31,7 @@ public class GameFrame extends JPanel {
     ArrayList<Enemy> enemiesToRemove = new ArrayList<>();
     ArrayList<Entita> bulletsToRemove = new ArrayList<>();
     public int budget = 0;
+    Enemy enemy = new Enemy(getX(), getY(), player);
     Magnet magnet = new Magnet("Magnet", 1, 10);
     Weapon weapon = new Weapon("Shotgun", 2, 40);
     JButton magnetButton = new JButton();

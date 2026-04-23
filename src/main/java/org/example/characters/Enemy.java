@@ -5,6 +5,7 @@ import org.example.basics.GameFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
+import java.util.Random;
 
 public class Enemy extends Entita {
     private int moveSpeed = 1;
