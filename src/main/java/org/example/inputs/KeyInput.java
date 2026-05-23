@@ -2,7 +2,6 @@ package org.example.inputs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Arrays;
 
 public class KeyInput implements KeyListener {
     private boolean[] keys = new boolean[256];

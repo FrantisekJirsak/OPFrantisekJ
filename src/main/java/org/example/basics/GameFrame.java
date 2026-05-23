@@ -23,8 +23,8 @@ public class GameFrame extends JPanel {
 
 
     private static final int timeDelay = 16;
+    private final MouseInput mouseInput = new MouseInput();
     private final KeyInput keyInput = new KeyInput();
-    private final MouseInput mouseInput = new MouseInput(this);
     Player player = new Player(100,800, keyInput);
     ArrayList<Enemy> enemies = new ArrayList<>();
     ArrayList<Money> coins = new ArrayList<>();
@@ -41,6 +41,7 @@ public class GameFrame extends JPanel {
     private boolean switchMenu = false;
     private int shootCooldown = 0;
     public static ArrayList<Entita> bulletList = new ArrayList<>();
+    private boolean gameWon = false;
     private final Image BULLET_RIGHT = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_right.png"))).getImage();
     private final Image BULLET_LEFT = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_left.png"))).getImage();
     private final Image BULLET_UP = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_up.png"))).getImage();
@@ -101,10 +102,12 @@ public class GameFrame extends JPanel {
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_O)){
                     switchMenu = true;
+                    gameWon = false;
                     player.hasWeapon = false;
                     player.hasMagnet = false;
                     player.resetPosition();
                     enemy.resetPosition(enemies);
+                    enemy.spawnEnemies(enemies);
                     Money.spawnMoney(coins);
                     budget = 0;
                 }
@@ -120,11 +123,15 @@ public class GameFrame extends JPanel {
                 }
 
                 for (Enemy enemy : enemies) {
-                    for (Entita bullet : bulletList){
-                        weapon.deleteBullet(enemy, bulletList);
+                    weapon.deleteBullet(enemy, bulletList);
                     }
 
                 }
+                enemies.removeAll(enemiesToRemove);
+            if (enemies.isEmpty() && !gameWon) {
+                gameWon = true;
+            }
+                enemiesToRemove.clear(); // so enemies don't accumulate across frames
 
                 enemies.removeAll(enemiesToRemove);
                 bulletList.removeAll(bulletsToRemove);
@@ -133,9 +140,17 @@ public class GameFrame extends JPanel {
 
                 weapon.nabojMove(bulletList);
 
-                if (keyInput.isKeyPressed(KeyEvent.VK_L) && shootCooldown == 0) {
+                if (mouseInput.isLeftClicked() && shootCooldown == 0) {
                     weapon.naboj(player, bulletList, weapon);
                     shootCooldown = 10;
+                }
+
+                for (Enemy enemy : enemies) {
+                    boolean hit = bulletList.removeIf(bullet -> bullet.getBounds().intersects(enemy.getBounds()));
+                    if (hit) {
+                        enemiesToRemove.add(enemy);
+                    }
+
                 }
 
                 if (shootCooldown > 0) {
@@ -147,7 +162,6 @@ public class GameFrame extends JPanel {
                         player.isHurt = true;
                     }
                 }
-            }
 
         }).start();
     }
@@ -199,9 +213,20 @@ public class GameFrame extends JPanel {
         g.drawString("Money:" + budget, 1220, 20);
         g.setColor(lightGray);
 
+        if (gameWon) {
+            g.setFont(new Font("Arial", Font.BOLD, 72));
+            g.setColor(Color.YELLOW);
+            g.drawString("YOU WON!", 450, 450);
+
+            g.setFont(new Font("Arial", Font.PLAIN, 24));
+            g.drawString("Press O to play again", 500, 520);
+        } else {
+
+        }
+
     }
 
     public boolean isSwitchMenu() {
         return switchMenu;
     }
-        }
+}

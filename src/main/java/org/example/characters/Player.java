@@ -17,8 +17,6 @@ public class Player extends Entita{
     public boolean hasWeapon = false;
     public boolean hasMagnet = false;
     public String direction = "UP";
-    public int dx;
-    public int dy;
 
     private final Image PLAYER_1 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_1.png"))).getImage();
     private final Image PLAYER_2 = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/characters/mc_soldier_2.png"))).getImage();

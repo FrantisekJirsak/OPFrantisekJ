@@ -92,12 +92,8 @@ public class Weapon extends Item{
         }
     }
 
-    public void deleteBullet(Enemy enemy, ArrayList<Entita> bulletlist){
-        for (Entita bullet : bulletlist){
-            if (bullet.getBounds().intersects(enemy.getBounds())){
-                bulletlist.remove(bullet);
-            }
-        }
+    public void deleteBullet(Enemy enemy, ArrayList<Entita> bulletList) {
+        bulletList.removeIf(bullet -> bullet.getBounds().intersects(enemy.getBounds()));
     }
 
     public void nabojMove(ArrayList<Entita> bullets){
