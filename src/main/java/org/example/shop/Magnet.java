@@ -69,6 +69,7 @@ public class Magnet extends Item{
             gameFrame.budget -= 10;
             player.hasMagnet = true;
             player.hasWeapon = false;
+            player.playerSpeed = 1;
         }
     }
 

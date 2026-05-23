@@ -11,12 +11,10 @@ import java.util.Objects;
 public class Player extends Entita{
 
     private KeyInput keyInput;
-    private int playerSpeed = 3;
+    public int playerSpeed = 3;
     private int startX = x;
     private int startY = y;
     public boolean hasWeapon = false;
-    public boolean obtainedWeapon = false;
-    public boolean obtainedMagnet = false;
     public boolean hasMagnet = false;
     public String direction = "UP";
     public int dx;

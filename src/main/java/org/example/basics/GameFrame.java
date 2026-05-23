@@ -5,8 +5,10 @@ import org.example.characters.Entita;
 import org.example.characters.Player;
 import org.example.gamefield.Background;
 import org.example.inputs.KeyInput;
+import org.example.inputs.MouseInput;
 import org.example.menu.Button;
 import org.example.shop.Magnet;
+import org.example.shop.Money;
 import org.example.shop.Weapon;
 
 import javax.swing.*;
@@ -22,6 +24,7 @@ public class GameFrame extends JPanel {
 
     private static final int timeDelay = 16;
     private final KeyInput keyInput = new KeyInput();
+    private final MouseInput mouseInput = new MouseInput(this);
     Player player = new Player(100,800, keyInput);
     ArrayList<Enemy> enemies = new ArrayList<>();
     ArrayList<Money> coins = new ArrayList<>();
@@ -46,6 +49,7 @@ public class GameFrame extends JPanel {
     public GameFrame(){
         setFocusable(true);
         addKeyListener(keyInput);
+        addMouseListener(mouseInput);
         requestFocusInWindow();
         magnetButton.addActionListener(e -> {
             magnet.buyMagnet(player, this);
@@ -132,6 +136,10 @@ public class GameFrame extends JPanel {
                 if (keyInput.isKeyPressed(KeyEvent.VK_L) && shootCooldown == 0) {
                     weapon.naboj(player, bulletList, weapon);
                     shootCooldown = 10;
+                }
+
+                if (shootCooldown > 0) {
+                    shootCooldown--;
                 }
 
                 for (Enemy enemy : enemies) {

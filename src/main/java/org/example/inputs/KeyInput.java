@@ -14,14 +14,8 @@ public class KeyInput implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        Arrays.fill(keys, false);
-
         keys[e.getKeyCode()] = true;
 
-        if (isKeyPressed(KeyEvent.VK_L) && gameframe.shootCooldown == 0) {
-            weapon.naboj(gameframe.player, gameframe.bulletList, weapon);
-            gameframe.shootCooldown = 10;
-        }
     }
 
     @Override

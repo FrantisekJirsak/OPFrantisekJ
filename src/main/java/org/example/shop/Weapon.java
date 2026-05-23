@@ -104,7 +104,7 @@ public class Weapon extends Item{
         bullets.forEach(Entita::move);
     }
 
-    public void naboj(Player player, ArrayList<Entita> bulletlist, Weapon weapon){
+    public static void naboj(Player player, ArrayList<Entita> bulletlist, Weapon weapon){
         if (player.hasWeapon){
             int dx = 0;
             int dy = 0;

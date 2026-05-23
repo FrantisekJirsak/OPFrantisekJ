@@ -1,5 +1,6 @@
-package org.example.basics;
+package org.example.shop;
 
+import org.example.basics.GameFrame;
 import org.example.characters.Player;
 
 import javax.swing.*;
