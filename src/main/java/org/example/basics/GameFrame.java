@@ -60,6 +60,7 @@ public class GameFrame extends JPanel {
         weaponButton.addActionListener(e -> {
             weapon.buyWeapon(player, this);
             requestFocusInWindow();
+
         });
 
         add(magnetButton);
@@ -222,6 +223,12 @@ public class GameFrame extends JPanel {
             g.drawString("Press O to play again", 500, 520);
         } else {
 
+        }
+
+        if (player.isHurt){
+            g.setFont(new Font("Arial", Font.BOLD, 72));
+            g.setColor(Color.YELLOW);
+            g.drawString("YOU LOSE!", 450, 450);
         }
 
     }
