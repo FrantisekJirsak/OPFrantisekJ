@@ -15,7 +15,4 @@ public class Item {
         this.price = price;
     }
 
-    public void checkMoney(GameFrame gameFrame, Button button){
-    }
-
 }
