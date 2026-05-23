@@ -5,7 +5,6 @@ import org.example.characters.Entita;
 import org.example.characters.Player;
 import org.example.gamefield.Background;
 import org.example.inputs.KeyInput;
-import org.example.inputs.MouseInput;
 import org.example.menu.Button;
 import org.example.shop.Magnet;
 import org.example.shop.Weapon;
@@ -15,7 +14,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Random;
 
 import static java.awt.Color.lightGray;
 
@@ -23,7 +21,6 @@ public class GameFrame extends JPanel {
 
 
     private static final int timeDelay = 16;
-    private final MouseInput mouseInput = new MouseInput(this);
     private final KeyInput keyInput = new KeyInput();
     Player player = new Player(100,800, keyInput);
     ArrayList<Enemy> enemies = new ArrayList<>();
@@ -34,23 +31,21 @@ public class GameFrame extends JPanel {
     Enemy enemy = new Enemy(getX(), getY(), player);
     Magnet magnet = new Magnet("Magnet", 1, 10);
     Weapon weapon = new Weapon("Shotgun", 2, 40);
-    JButton magnetButton = new JButton();
-    JButton weaponButton = new JButton();
+    JButton magnetButton = new JButton("Buy Magnet");
+    JButton weaponButton = new JButton("Buy Weapon");
     Button button = new Button();
     Background background = new Background(this);
     private boolean switchMenu = false;
     private int shootCooldown = 0;
-    static ArrayList<Entita> bulletList = new ArrayList<>();
+    public static ArrayList<Entita> bulletList = new ArrayList<>();
     private final Image BULLET_RIGHT = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_right.png"))).getImage();
     private final Image BULLET_LEFT = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_left.png"))).getImage();
     private final Image BULLET_UP = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_up.png"))).getImage();
     private final Image BULLET_DOWN = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_down.png"))).getImage();
 
     public GameFrame(){
-
         setFocusable(true);
         addKeyListener(keyInput);
-        addMouseListener(mouseInput);
         requestFocusInWindow();
         magnetButton.addActionListener(e -> {
             magnet.buyMagnet(player, this);
@@ -64,7 +59,7 @@ public class GameFrame extends JPanel {
 
         add(magnetButton);
         add(weaponButton);
-        spawnEnemies();
+        enemy.spawnEnemies(enemies);
 
 
         new Timer(timeDelay,  e -> {
@@ -105,16 +100,19 @@ public class GameFrame extends JPanel {
                     player.hasWeapon = false;
                     player.hasMagnet = false;
                     player.resetPosition();
+                    enemy.resetPosition(enemies);
                     Money.spawnMoney(coins);
                     budget = 0;
                 }
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_U)){
                     player.hasMagnet = true;
+                    player.hasWeapon = false;
                 }
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_J)){
                     player.hasWeapon = true;
+                    player.hasMagnet = false;
                 }
 
                 for (Enemy enemy : enemies) {
@@ -129,10 +127,10 @@ public class GameFrame extends JPanel {
 
                 weapon.directWeapon(keyInput);
 
-                nabojMove();
+                weapon.nabojMove(bulletList);
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_L) && shootCooldown == 0) {
-                    naboj();
+                    weapon.naboj(player, bulletList, weapon);
                     shootCooldown = 10;
                 }
 
@@ -161,43 +159,6 @@ public class GameFrame extends JPanel {
     private void paintMenu(Graphics g){
         background.drawBackground(g);
         button.drawButton(g);
-    }
-
-    public void naboj(){
-        if (player.hasWeapon){
-            int dx = 0;
-            int dy = 0;
-            int offsetX = 0;
-            int offsetY = 0;
-
-            switch (player.direction){
-                case "UP" -> {
-                    dy = -5;
-                    offsetY = -80;
-                }
-                case "DOWN" -> {
-                    dy = 5;
-                    offsetY = 80;
-                }
-                case "LEFT" -> {
-                    dx = -5;
-                    offsetX = -80;
-                }
-                case "RIGHT" -> {
-                    dx = 5;
-                    offsetX = 100;
-                }
-            }
-
-            bulletList.add(new Entita(player.getX() + offsetX, player.getY() + offsetY, dx, dy));
-            weapon.deactivateMagnet(player);
-
-        }
-
-    }
-
-    private void nabojMove(){
-        bulletList.forEach(Entita::move);
     }
 
     private void paintGame(Graphics g){
@@ -235,13 +196,4 @@ public class GameFrame extends JPanel {
     public boolean isSwitchMenu() {
         return switchMenu;
     }
-
-    private void spawnEnemies() {
-        Random random = new Random();
-        for (int i = 0; i < 20; i++) {
-            int x = random.nextInt(100,1000);
-            int y = random.nextInt(100,150);
-            enemies.add(new Enemy(x, y, player));
         }
-    }
-}

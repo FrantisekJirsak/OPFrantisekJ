@@ -4,12 +4,15 @@ import org.example.basics.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
 public class Enemy extends Entita {
     private int moveSpeed = 1;
     Player player;
+    private int startX = x;
+    private int startY = y;
 
     public Enemy(int x, int y, Player player) {
         super(x, y, player.dx, player.dy);
@@ -45,6 +48,24 @@ public class Enemy extends Entita {
             currentImage = ENEMY_4;
         }
     }
+
+    public void spawnEnemies(ArrayList enemies) {
+        Random random = new Random();
+        enemies.clear();
+
+        for (int i = 0; i < 20; i++) {
+            int x = random.nextInt(100,1000);
+            int y = random.nextInt(100,150);
+            enemies.add(new Enemy(x, y, player));
+    }
+
+    }
+
+    public void resetPosition(ArrayList<Enemy> enemies){
+        this.x = startX;
+        this.y = startY;
+    }
+
 
     public Rectangle getBounds() {
         return new Rectangle(x, y, 32, 64);

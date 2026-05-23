@@ -21,16 +21,4 @@ public class Button{
 
     }
 
-    private void makeInvisible(JButton button) {
-        button.setOpaque(false);
-        button.setContentAreaFilled(false);
-        button.setBorderPainted(false);
-    }
-
-    public void checkBounds(MouseMotionListener e){
-
-
-
-    }
-
 }

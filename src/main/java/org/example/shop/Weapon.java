@@ -99,4 +99,46 @@ public class Weapon extends Item{
             }
         }
     }
+
+    public void nabojMove(ArrayList<Entita> bullets){
+        bullets.forEach(Entita::move);
+    }
+
+    public void naboj(Player player, ArrayList<Entita> bulletlist, Weapon weapon){
+        if (player.hasWeapon){
+            int dx = 0;
+            int dy = 0;
+            int offsetX = 0;
+            int offsetY = 0;
+
+            switch (player.direction){
+                case "UP" -> {
+                    dy = -5;
+                    offsetY = -80;
+                }
+                case "DOWN" -> {
+                    dy = 5;
+                    offsetY = 80;
+                }
+                case "LEFT" -> {
+                    dx = -5;
+                    offsetX = -80;
+                }
+                case "RIGHT" -> {
+                    dx = 5;
+                    offsetX = 100;
+                }
+            }
+
+            bulletlist.add(new Entita(player.getX() + offsetX, player.getY() + offsetY, dx, dy));
+            weapon.deactivateMagnet(player);
+
+        }
+
+    }
+
 }
+
+
+
+
