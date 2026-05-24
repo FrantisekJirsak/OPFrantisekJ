@@ -65,6 +65,8 @@ public class GameFrame extends JPanel {
 
         add(magnetButton);
         add(weaponButton);
+        magnetButton.setVisible(false);
+        weaponButton.setVisible(false);
         enemy.spawnEnemies(enemies);
 
 
@@ -99,6 +101,8 @@ public class GameFrame extends JPanel {
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_P)){
                     switchMenu = false;
+                    magnetButton.setVisible(false);
+                    weaponButton.setVisible(false);
                 }
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_O)){
@@ -112,6 +116,8 @@ public class GameFrame extends JPanel {
                     enemy.spawnEnemies(enemies);
                     Money.spawnMoney(coins);
                     budget = 0;
+                    magnetButton.setVisible(true);
+                    weaponButton.setVisible(true);
                 }
 
                 if (keyInput.isKeyPressed(KeyEvent.VK_U)){
@@ -211,7 +217,7 @@ public class GameFrame extends JPanel {
 
         }
         g.drawString("Press P for Main Menu", 20,20);
-        g.drawString("Good Luck", 630,20);
+        g.drawString("Good Luck", 630,50);
         g.drawString("Money:" + budget, 1220, 20);
         g.setColor(lightGray);
 
