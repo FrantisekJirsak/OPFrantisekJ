@@ -196,7 +196,7 @@ public class GameFrame extends JPanel {
 
         if (gameWon) {
             g.setFont(new Font("Arial", Font.BOLD, 72));
-            g.setColor(Color.YELLOW);
+            g.setColor(Color.WHITE);
             g.drawString("YOU WON!", 450, 450);
 
             g.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -207,7 +207,7 @@ public class GameFrame extends JPanel {
 
         if (player.isHurt){
             g.setFont(new Font("Arial", Font.BOLD, 72));
-            g.setColor(Color.YELLOW);
+            g.setColor(Color.WHITE);
             g.drawString("YOU LOSE!", 450, 450);
 
             g.setFont(new Font("Arial", Font.PLAIN, 24));
