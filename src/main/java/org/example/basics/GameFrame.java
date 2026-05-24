@@ -106,6 +106,7 @@ public class GameFrame extends JPanel {
                     gameWon = false;
                     player.hasWeapon = false;
                     player.hasMagnet = false;
+                    player.playerSpeed = 3;
                     player.resetPosition();
                     enemy.resetPosition(enemies);
                     enemy.spawnEnemies(enemies);
