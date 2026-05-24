@@ -4,6 +4,7 @@ import org.example.characters.Enemy;
 import org.example.characters.Entita;
 import org.example.characters.Player;
 import org.example.gamefield.Background;
+import org.example.inputs.InputHandler;
 import org.example.inputs.KeyInput;
 import org.example.inputs.MouseInput;
 import org.example.menu.Button;
@@ -23,25 +24,26 @@ public class GameFrame extends JPanel {
 
 
     private static final int timeDelay = 16;
-    private final MouseInput mouseInput = new MouseInput();
-    private final KeyInput keyInput = new KeyInput();
-    Player player = new Player(100,800, keyInput);
-    ArrayList<Enemy> enemies = new ArrayList<>();
-    ArrayList<Money> coins = new ArrayList<>();
+    public final MouseInput mouseInput = new MouseInput();
+    public final KeyInput keyInput = new KeyInput();
+    public final InputHandler inputHandler = new InputHandler(keyInput, this);
+    public Player player = new Player(100,800, keyInput);
+    public ArrayList<Enemy> enemies = new ArrayList<>();
+    public ArrayList<Money> coins = new ArrayList<>();
     ArrayList<Enemy> enemiesToRemove = new ArrayList<>();
     ArrayList<Entita> bulletsToRemove = new ArrayList<>();
     public int budget = 0;
-    Enemy enemy = new Enemy(getX(), getY(), player);
+    public Enemy enemy = new Enemy(getX(), getY(), player);
     Magnet magnet = new Magnet("Magnet", 1, 10);
     Weapon weapon = new Weapon("Shotgun", 2, 40);
-    JButton magnetButton = new JButton("Buy Magnet");
-    JButton weaponButton = new JButton("Buy Weapon");
+    public JButton magnetButton = new JButton("Buy Magnet");
+    public JButton weaponButton = new JButton("Buy Weapon");
     Button button = new Button();
     Background background = new Background(this);
-    private boolean switchMenu = false;
+    public boolean switchMenu = false;
     private int shootCooldown = 0;
     public static ArrayList<Entita> bulletList = new ArrayList<>();
-    private boolean gameWon = false;
+    public boolean gameWon = false;
     private final Image BULLET_RIGHT = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_right.png"))).getImage();
     private final Image BULLET_LEFT = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_left.png"))).getImage();
     private final Image BULLET_UP = new ImageIcon(Objects.requireNonNull(GameFrame.class.getResource("/bullet/bullet_up.png"))).getImage();
@@ -99,37 +101,6 @@ public class GameFrame extends JPanel {
                     magnet.deactivateWeapon(player);
                 }
 
-                if (keyInput.isKeyPressed(KeyEvent.VK_P)){
-                    switchMenu = false;
-                    magnetButton.setVisible(false);
-                    weaponButton.setVisible(false);
-                }
-
-                if (keyInput.isKeyPressed(KeyEvent.VK_O)){
-                    switchMenu = true;
-                    gameWon = false;
-                    player.hasWeapon = false;
-                    player.hasMagnet = false;
-                    player.playerSpeed = 3;
-                    player.resetPosition();
-                    enemy.resetPosition(enemies);
-                    enemy.spawnEnemies(enemies);
-                    Money.spawnMoney(coins);
-                    budget = 0;
-                    magnetButton.setVisible(true);
-                    weaponButton.setVisible(true);
-                }
-
-                if (keyInput.isKeyPressed(KeyEvent.VK_U)){
-                    player.hasMagnet = true;
-                    player.hasWeapon = false;
-                }
-
-                if (keyInput.isKeyPressed(KeyEvent.VK_J)){
-                    player.hasWeapon = true;
-                    player.hasMagnet = false;
-                }
-
                 for (Enemy enemy : enemies) {
                     weapon.deleteBullet(enemy, bulletList);
                     }
@@ -170,6 +141,8 @@ public class GameFrame extends JPanel {
                         player.isHurt = true;
                     }
                 }
+
+            inputHandler.handleInput();
 
         }).start();
     }
@@ -236,6 +209,9 @@ public class GameFrame extends JPanel {
             g.setFont(new Font("Arial", Font.BOLD, 72));
             g.setColor(Color.YELLOW);
             g.drawString("YOU LOSE!", 450, 450);
+
+            g.setFont(new Font("Arial", Font.PLAIN, 24));
+            g.drawString("Press O to play again", 500, 520);
         }
 
     }
