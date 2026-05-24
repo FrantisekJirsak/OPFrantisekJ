@@ -149,7 +149,7 @@ public class GameFrame extends JPanel {
                 weapon.nabojMove(bulletList);
 
                 if (mouseInput.isLeftClicked() && shootCooldown == 0) {
-                    weapon.naboj(player, bulletList, weapon);
+                    Weapon.naboj(player, bulletList, weapon);
                     shootCooldown = 10;
                 }
 
