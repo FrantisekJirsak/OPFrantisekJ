@@ -38,6 +38,7 @@ public class GameFrame extends JPanel {
     Weapon weapon = new Weapon("Shotgun", 2, 40);
     public JButton magnetButton = new JButton("Buy Magnet");
     public JButton weaponButton = new JButton("Buy Weapon");
+    public JButton startButton = new JButton();
     Button button = new Button();
     Background background = new Background(this);
     public boolean switchMenu = false;
@@ -53,6 +54,7 @@ public class GameFrame extends JPanel {
         setFocusable(true);
         addKeyListener(keyInput);
         addMouseListener(mouseInput);
+        addMouseMotionListener(mouseInput);
         requestFocusInWindow();
         magnetButton.addActionListener(e -> {
             magnet.buyMagnet(player, this);
@@ -65,8 +67,30 @@ public class GameFrame extends JPanel {
 
         });
 
+        startButton.setBounds(50, 415, 200, 40); // position it under the button image
+        startButton.setOpaque(false);
+        startButton.setContentAreaFilled(false);
+        startButton.setBorderPainted(false);
+        startButton.setFocusPainted(false);
+        startButton.setVisible(true);
+        add(startButton);
+        setLayout(null);
+
+        startButton.addActionListener(e -> {
+            switchMenu = true;
+            magnetButton.setVisible(true);
+            weaponButton.setVisible(true);
+            requestFocusInWindow();
+        });
+
+        magnetButton.setBounds(420, 10, 150, 30);
+        magnetButton.setVisible(false);
         add(magnetButton);
+
+        weaponButton.setBounds(720, 10, 150, 30);
+        weaponButton.setVisible(false);
         add(weaponButton);
+
         magnetButton.setVisible(false);
         weaponButton.setVisible(false);
         enemy.spawnEnemies(enemies);
@@ -161,6 +185,7 @@ public class GameFrame extends JPanel {
 
     private void paintMenu(Graphics g){
         background.drawBackground(g);
+        button.updateHover(mouseInput.getMouseX(), mouseInput.getMouseY());
         button.drawButton(g);
     }
 
