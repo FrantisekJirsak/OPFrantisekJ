@@ -16,8 +16,6 @@ public class InputHandler{
     }
 
     public void handleInput() {
-
-
         if (keyInput.isKeyPressed(KeyEvent.VK_P)) {
             gameFrame.switchMenu = false;
             gameFrame.magnetButton.setVisible(false);

@@ -14,7 +14,6 @@ import org.example.shop.Weapon;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -67,7 +66,7 @@ public class GameFrame extends JPanel {
 
         });
 
-        startButton.setBounds(50, 415, 200, 40); // position it under the button image
+        startButton.setBounds(50, 415, 200, 40);
         startButton.setOpaque(false);
         startButton.setContentAreaFilled(false);
         startButton.setBorderPainted(false);
@@ -134,7 +133,7 @@ public class GameFrame extends JPanel {
             if (enemies.isEmpty() && !gameWon) {
                 gameWon = true;
             }
-                enemiesToRemove.clear(); // so enemies don't accumulate across frames
+                enemiesToRemove.clear();
 
                 enemies.removeAll(enemiesToRemove);
                 bulletList.removeAll(bulletsToRemove);
@@ -145,7 +144,7 @@ public class GameFrame extends JPanel {
 
                 if (mouseInput.isLeftClicked() && shootCooldown == 0) {
                     Weapon.naboj(player, bulletList, weapon);
-                    shootCooldown = 10;
+                    shootCooldown = 25;
                 }
 
                 for (Enemy enemy : enemies) {
