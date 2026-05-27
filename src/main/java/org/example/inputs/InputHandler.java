@@ -38,14 +38,5 @@ public class InputHandler{
             gameFrame.budget = 0;
         }
 
-        if (keyInput.isKeyPressed(KeyEvent.VK_U)) {
-            gameFrame.player.hasMagnet = true;
-            gameFrame.player.hasWeapon = false;
-        }
-
-        if (keyInput.isKeyPressed(KeyEvent.VK_J)) {
-            gameFrame.player.hasWeapon = true;
-            gameFrame.player.hasMagnet = false;
-        }
     }
 }
