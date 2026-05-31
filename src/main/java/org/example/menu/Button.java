@@ -27,12 +27,4 @@ public class Button{
         isApproached = bounds.contains(mouseX, mouseY);
     }
 
-    public Rectangle getBounds() {
-        return bounds;
-    }
-
-    public boolean isApproached() {
-        return isApproached;
-    }
-
 }
