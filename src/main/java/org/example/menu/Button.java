@@ -4,7 +4,6 @@ import org.example.basics.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseMotionListener;
 import java.util.Objects;
 
 public class Button{
