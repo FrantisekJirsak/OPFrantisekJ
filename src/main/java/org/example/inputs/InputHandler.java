@@ -1,6 +1,7 @@
 package org.example.inputs;
 
 import org.example.basics.GameFrame;
+import org.example.characters.Player;
 import org.example.shop.Money;
 
 import java.awt.event.KeyEvent;

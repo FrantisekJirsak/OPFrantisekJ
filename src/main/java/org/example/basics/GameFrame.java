@@ -79,6 +79,7 @@ public class GameFrame extends JPanel {
             switchMenu = true;
             magnetButton.setVisible(true);
             weaponButton.setVisible(true);
+            Money.spawnMoney(coins);
             requestFocusInWindow();
         });
 
